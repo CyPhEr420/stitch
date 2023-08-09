@@ -1,36 +1,36 @@
-import CategoryMenu from "./components/category-menu/category-menu.container";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Home from "./routes/home/home.component";
+import Navigation from "./routes/navigation/navigation.component";
+import Authentication from "./routes/authentication/authentication.component";
+
+
+
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigation />,
+    children: [
+      {
+        path: "/",
+        element: <Home />
+      },
+      {
+        path: '/auth',
+        element: <Authentication />
+      }
+    ]
+    , errorElement: <h1>Error</h1>
+
+  },
+
+])
 
 const App = () => {
-  const categories = [
-    {
-      id: 1,
-      title: 'hats',
-      imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
-    },
-    {
-      id: 2,
-      title: 'jackets',
-      imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
-    },
-    {
-      id: 3,
-      title: 'sneakers',
-      imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
-    },
-    {
-      id: 4,
-      title: 'womens',
-      imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
-    },
-    {
-      id: 5,
-      title: 'mens',
-      imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
-    },
-  ];
-  return (
-    <CategoryMenu categories={categories} />
-  );
+  return <RouterProvider router={router} />
 }
 
 export default App;
